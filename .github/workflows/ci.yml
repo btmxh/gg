@@ -57,8 +57,7 @@ jobs:
       - name: Setup MSVC environment
         shell: cmd
         run: |
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-          cl /EHsc /Fe:sum.exe order-of-eval\sum.c
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VcDevCmd.bat" && cl /EHsc /Fe:sum.exe order-of-eval\sum.c
 
       - name: Run C program
         shell: cmd
@@ -116,8 +115,7 @@ jobs:
       - name: Setup MSVC environment
         shell: cmd
         run: |
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-          cl /EHsc /Fe:sum.exe order-of-eval\sum.cpp
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VcDevCmd.bat" && cl /EHsc /Fe:sum.exe order-of-eval\sum.cpp
 
       - name: Run C++ program
         shell: cmd
