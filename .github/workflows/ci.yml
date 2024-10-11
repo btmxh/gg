@@ -57,6 +57,9 @@ jobs:
       - name: Setup MSVC environment
         uses: ilammy/msvc-dev-cmd@v1
 
+      - name: Compile C program with MSVC
+        run: cl /EHsc /Fe:sum.exe order-of-eval\sum.c
+
       - name: Run C program
         shell: cmd
         run: .\sum.exe
@@ -112,6 +115,9 @@ jobs:
 
       - name: Setup MSVC environment
         uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Compile C++ program with MSVC
+        run: cl /EHsc /Fe:sum.exe order-of-eval\sum.cpp
 
       - name: Run C++ program
         shell: cmd
