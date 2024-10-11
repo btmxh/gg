@@ -1,0 +1,129 @@
+name: Compile and Run C and C++ Programs
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-gcc:
+    runs-on: ubuntu-latest
+    name: Compile C with GCC
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Install GCC
+        run: sudo apt-get install gcc -y
+        
+      - name: Compile with GCC
+        run: gcc -o sum order-of-eval/sum.c
+        
+      - name: Run C program
+        run: ./sum
+
+      - name: Remove executable
+        run: rm sum
+
+  build-clang:
+    runs-on: ubuntu-latest
+    name: Compile C with Clang
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Clang
+        run: sudo apt-get install clang -y
+        
+      - name: Compile with Clang
+        run: clang -o sum order-of-eval/sum.c
+        
+      - name: Run C program
+        run: ./sum
+
+      - name: Remove executable
+        run: rm sum
+
+  build-msvc:
+    runs-on: windows-latest
+    name: Compile C with MSVC
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup MSVC environment
+        shell: cmd
+        run: |
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          cl /EHsc /Fe:sum.exe order-of-eval\sum.c
+
+      - name: Run C program
+        shell: cmd
+        run: .\sum.exe
+
+      - name: Remove executable
+        shell: cmd
+        run: del sum.exe
+
+  build-cpp-gcc:
+    runs-on: ubuntu-latest
+    name: Compile C++ with GCC
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Install G++
+        run: sudo apt-get install g++ -y
+        
+      - name: Compile C++ program with G++
+        run: g++ -o sum order-of-eval/sum.cpp
+        
+      - name: Run C++ program
+        run: ./sum
+
+      - name: Remove executable
+        run: rm sum
+
+  build-cpp-clang:
+    runs-on: ubuntu-latest
+    name: Compile C++ with Clang
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Clang
+        run: sudo apt-get install clang -y
+        
+      - name: Compile C++ program with Clang
+        run: clang++ -o sum order-of-eval/sum.cpp
+        
+      - name: Run C++ program
+        run: ./sum
+
+      - name: Remove executable
+        run: rm sum
+
+  build-cpp-msvc:
+    runs-on: windows-latest
+    name: Compile C++ with MSVC
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup MSVC environment
+        shell: cmd
+        run: |
+          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          cl /EHsc /Fe:sum.exe order-of-eval\sum.cpp
+
+      - name: Run C++ program
+        shell: cmd
+        run: .\sum.exe
+
+      - name: Remove executable
+        shell: cmd
+        run: del sum.exe
+
