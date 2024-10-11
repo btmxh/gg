@@ -55,10 +55,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup MSVC environment
-        shell: cmd
-        run: |
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-          cl /EHsc /Fe:sum.exe order-of-eval\sum.c
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Compile C program with MSVC
+        run: cl /EHsc /Fe:sum.exe order-of-eval\sum.c
 
       - name: Run C program
         shell: cmd
@@ -114,10 +114,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Setup MSVC environment
-        shell: cmd
-        run: |
-          call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-          cl /EHsc /Fe:sum.exe order-of-eval\sum.cpp
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Compile C++ program with MSVC
+        run: cl /EHsc /Fe:sum.exe order-of-eval\sum.cpp
 
       - name: Run C++ program
         shell: cmd
